@@ -28,7 +28,7 @@ RUN apt-get update \
     # && apachectl restart \
     # && service apache2 reload \
 
-RUN rm /var/www/*
-COPY ./index.php /var/www/index.php
+RUN rm /var/www/html/*
+COPY ./index.php /var/www/html/index.php
 
 CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"]
