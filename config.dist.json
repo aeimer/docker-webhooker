@@ -1,0 +1,12 @@
+{
+  "config": [
+    {
+      "key": "aksdhgsdd6g7sdf6sdtfv76e73fdsdsr4tr",
+      "command": "ssh -i /opt/vol1/id_rsa root@target.edu bash deploy.sh"
+    },
+    {
+      "key": "sdfsd8fus9df9sdzf8s7dfg34343j434f64",
+      "command": "ssh -i /opt/vol1/id_rsa root@target.edu sudo shutdown -r now"
+    }
+  ]
+}
