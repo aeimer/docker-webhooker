@@ -5,6 +5,6 @@ FROM kstaken/apache2-php
 MAINTAINER Alexander Eimer <alexander.eimer@gmail.com>
 
 RUN rm /var/www/*
-COPY ./index.php /var/www/html/index.php
+COPY ./index.php /var/www/index.php
 
 CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"]
