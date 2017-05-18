@@ -30,7 +30,7 @@ Feel free to handle it in a different way ;)
 To start the container just run:
 
 ````bash
-docker run -d -p 80:80 aeimer/webhooker
+docker run -d -p 80:80 -v ~/conf.json:/opt/conf.json -e "CONFIG_FILE=/opt/conf.json" --name webhooker aeimer/webhooker
 ````
 
 See the container under <https://hub.docker.com/r/aeimer/webhooker>

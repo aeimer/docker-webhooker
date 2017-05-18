@@ -12,6 +12,9 @@ const CONFIG_KEY     = 'key';
 const CONFIG_COMMAND = 'command';
 const ENV_CONF_FILE  = 'CONFIG_FILE';
 
+// Print two new lines for prettier output with curl
+echo "\xA\xA";
+
 // Get ENV-Vars
 $configFile = getenv( ENV_CONF_FILE );
 
@@ -54,4 +57,5 @@ if ( ! key_exists( $taskKey, $tasks ) ) {
 }
 
 // Execute command
-echo shell_exec( $tasks[ $taskKey ] );
+// The 2>&1 pipes the stderr stream to stdout, so we can see if there's an error
+echo shell_exec( $tasks[ $taskKey ] . ' 2>&1');
