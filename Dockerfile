@@ -12,7 +12,7 @@ RUN apt-get update \
     # && add-apt-repository ppa:ondrej/php \
     && apt-get install php7.0 \
     && apt-get update \
-    && apt-get install \
+    && apt-get install -y \
         libapache2-mod-php7.0 \
         php7.0-fpm \
         php7.0-json \
