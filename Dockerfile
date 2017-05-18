@@ -10,7 +10,7 @@ RUN echo 'deb http://packages.dotdeb.org jessie all' >> /etc/apt/sources.list \
 
 RUN apt-get update \
     # && add-apt-repository ppa:ondrej/php \
-    && apt-get install php7.0 \
+    && apt-get install -y php7.0 \
     && apt-get update \
     && apt-get install -y \
         libapache2-mod-php7.0 \
