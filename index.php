@@ -20,14 +20,14 @@ $configContent = file_get_contents( $configFile );
 $configJson    = json_decode( $configContent, true );
 
 // Check if config file was loaded successfully
-if ( ! $configJson || ! $configContent || ! $configJson ) {
+if ( ! $configFile || ! $configContent || $configJson === NULL) {
 	http_response_code( 500 );
 	die( 'CONFIG_FILE_NOT_FOUND' );
 }
 
 // Check config
 $tasks = [];
-foreach ( $configJson as $task ) {
+foreach ( $configJson['config'] as $task ) {
 	if ( array_key_exists( $task[ CONFIG_KEY ], $tasks ) ) {
 		// Check if no duplicate keys exist
 		http_response_code( 500 );
@@ -54,4 +54,4 @@ if ( ! key_exists( $taskKey, $tasks ) ) {
 }
 
 // Execute command
-shell_exec( $tasks[ CONFIG_COMMAND ] );
+echo shell_exec( $tasks[ $taskKey ] );
