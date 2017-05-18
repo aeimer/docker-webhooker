@@ -22,8 +22,13 @@ $configJson    = json_decode( $configContent, true );
 $tasks = [];
 foreach ( $configJson as $task ) {
 	if ( array_key_exists( $task[ CONFIG_KEY ], $tasks ) ) {
+		// Check if no duplicate keys exist
 		http_response_code( 500 );
 		die( 'DUPLICATE_KEY_ERROR' );
+	} elseif ( strlen( $task[ CONFIG_KEY ] ) < 10 ) {
+		// Check if the key is long enough
+		http_response_code( 500 );
+		die( 'KEY_TOO_SHORT_ERROR' );
 	}
 	$tasks[ $task[ CONFIG_KEY ] ] = $task[ CONFIG_COMMAND ];
 }
