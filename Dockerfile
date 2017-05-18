@@ -17,4 +17,4 @@ ENV APACHE_RUN_USER=www-data \
 
 COPY ./index.php /app/index.php
 
-CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"]
+# CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"]
