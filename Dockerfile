@@ -12,7 +12,7 @@ ENV SUFFIX="" \
     APACHE_LOCK_DIR=/var/lock/apache2$SUFFIX \
     APACHE_LOG_DIR=/var/log/apache2$SUFFIX \
     LANG=C \
-    DOCUMENT_ROOT=/app
+    WEB_DOCUMENT_ROOT=/app
     # LANG
 
 COPY ./index.php /app/index.php
