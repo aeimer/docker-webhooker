@@ -6,6 +6,7 @@
  * Time: 10:46
  */
 
+// Constants
 const POST_PARAM_KEY = 'key';
 const CONFIG_KEY     = 'key';
 const CONFIG_COMMAND = 'command';
@@ -17,26 +18,28 @@ $configFile = getenv( 'CONFIG_FILE' );
 $configContent = file_get_contents( $configFile );
 $configJson    = json_decode( $configContent, true );
 
-// Check post-param
-if ( ! isset( $_POST[ POST_PARAM_KEY ] ) || trim( $_POST[ POST_PARAM_KEY ] ) === '' ) {
-	http_response_code( 400 );
-	die( 'ONLY POST PARAM: "key"' );
+// Check config
+$tasks = [];
+foreach ( $configJson as $task ) {
+	if ( array_key_exists( $task[ CONFIG_KEY ], $tasks ) ) {
+		http_response_code( 500 );
+		die( 'DUPLICATE_KEY_ERROR' );
+	}
+	$tasks[ $task[ CONFIG_KEY ] ] = $task[ CONFIG_COMMAND ];
 }
 
-// Find task
-$taskKey = trim( $_POST[ POST_PARAM_KEY ] );
-$command = null;
-foreach ( $configJson as $task ) {
-	if ( $task[ CONFIG_KEY ] === $taskKey ) {
-		$command = $task[ CONFIG_COMMAND ];
-	}
+// Check post-param
+if ( ! isset( $_POST[ POST_PARAM_KEY ] ) || $_POST[ POST_PARAM_KEY ] === '' ) {
+	http_response_code( 400 );
+	die( 'PARAMETER_KEY_NOT_FOUND' );
 }
+$taskKey = $_POST[ POST_PARAM_KEY ];
 
 // Key not found in config
-if ( $command === null ) {
+if ( ! key_exists( $taskKey, $tasks ) ) {
 	http_response_code( 401 );
 	die( 'WRONG KEY' );
 }
 
 // Execute command
-shell_exec( $command );
+shell_exec( $tasks[ CONFIG_COMMAND ] );
