@@ -7,6 +7,14 @@
     {
       "key": "sdfsd8fus9df9sdzf8s7dfg34343j434f64",
       "command": "ssh -i /opt/vol1/id_rsa root@target.edu sudo shutdown -r now"
+    },
+    {
+      "key": "asd8787838gr76g376gr7gd36g76gd373g67e6dg373gd73:restart",
+      "command": "sudo shutdown -r"
+    },
+    {
+      "key": "asd8787838gr76g376gr7gd36g76gd373g67e6dg373gd73:restart-60m",
+      "command": "sudo shutdown -r +60"
     }
   ]
 }
