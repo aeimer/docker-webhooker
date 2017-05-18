@@ -12,11 +12,16 @@ const CONFIG_KEY     = 'key';
 const CONFIG_COMMAND = 'command';
 
 // Get ENV-Vars
-$configFile = getenv( 'CONFIG_FILE' );
+try {
+	$configFile = getenv( 'CONFIG_FILE' );
 
-// Read config file
-$configContent = file_get_contents( $configFile );
-$configJson    = json_decode( $configContent, true );
+	// Read config file
+	$configContent = file_get_contents( $configFile );
+	$configJson    = json_decode( $configContent, true );
+} catch ( Exception $exception ) {
+	http_response_code( 500 );
+	die( 'CONFIG_FILE_NOT_FOUND' );
+}
 
 // Check config
 $tasks = [];
