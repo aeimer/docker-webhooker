@@ -5,12 +5,12 @@ FROM eboraas/apache
 MAINTAINER Alexander Eimer <alexander.eimer@gmail.com>
 
 # Install PHP7
-# RUN echo 'deb http://packages.dotdeb.org jessie all' >> /etc/apt/sources.list \
-#     && echo 'deb-src http://packages.dotdeb.org jessie all' >> /etc/apt/sources.list
+RUN echo 'deb http://packages.dotdeb.org jessie all' >> /etc/apt/sources.list \
+    && echo 'deb-src http://packages.dotdeb.org jessie all' >> /etc/apt/sources.list
 
 RUN apt-get update \
     && apt-get install -y --force-yes apt-utils \
-    && add-apt-repository ppa:ondrej/php \
+    # && add-apt-repository ppa:ondrej/php \
     && apt-get install -y --force-yes php7.0 \
     && apt-get update \
     && apt-get install -y --force-yes \
