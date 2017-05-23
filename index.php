@@ -11,19 +11,28 @@ const POST_PARAM_KEY = 'key';
 const CONFIG_KEY     = 'key';
 const CONFIG_COMMAND = 'command';
 const ENV_CONF_FILE  = 'CONFIG_FILE';
+const ENV_LOG_FILE   = 'LOG_FILE';
 
 // Print two new lines for prettier output with curl
 echo "\xA\xA";
 
 // Get ENV-Vars
-$configFile = getenv( ENV_CONF_FILE );
+$configFile    = getenv( ENV_CONF_FILE );
+$configLogFile = getenv( ENV_LOG_FILE );
+
+// Init Logger
+$logFile = null;
+if ($configFile !== null && is_string($configFile) && strlen($configFile) > 0) {
+	$logFile = $configFile;
+}
+$log = new Logger($logFile);
 
 // Read config file
 $configContent = file_get_contents( $configFile );
 $configJson    = json_decode( $configContent, true );
 
 // Check if config file was loaded successfully
-if ( ! $configFile || ! $configContent || $configJson === NULL) {
+if ( ! $configFile || ! $configContent || $configJson === null ) {
 	http_response_code( 500 );
 	die( 'CONFIG_FILE_NOT_FOUND' );
 }
@@ -58,4 +67,24 @@ if ( ! key_exists( $taskKey, $tasks ) ) {
 
 // Execute command
 // The 2>&1 pipes the stderr stream to stdout, so we can see if there's an error
-echo shell_exec( $tasks[ $taskKey ] . ' 2>&1');
+echo shell_exec( $tasks[ $taskKey ] . ' 2>&1' );
+
+
+// Logger class for simpler logging
+class Logger {
+	private $logFile;
+
+	function __construct( string $logFile = null ) {
+		$this->logFile = $logFile;
+	}
+
+	public function log( string $msg ) {
+		// Write to standard php error log
+		error_log( $msg );
+
+		// Write to specific file
+		if ( $this->logFile !== null ) {
+			error_log( $msg . "\n", 3, $this->logFile );
+		}
+	}
+}
