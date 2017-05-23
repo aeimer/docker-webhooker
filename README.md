@@ -3,6 +3,8 @@ This is a Docker-Container which runs a Apache2 with PHP7 under Ubuntu 16.04.
 
 It only has one index.php which accepts `POST`-calls with the parameter `key`.
 Corresponding to this `key` in the `config.json` is a `command` defined which will run if the script receives a defined `key`.
+
+See the container under <https://hub.docker.com/r/aeimer/webhooker>
  
 ## Configuration
 ````json
@@ -33,4 +35,9 @@ To start the container just run:
 docker run -d -p 80:80 -v ~/conf.json:/opt/conf.json -e "CONFIG_FILE=/opt/conf.json" --name webhooker aeimer/webhooker
 ````
 
-See the container under <https://hub.docker.com/r/aeimer/webhooker>
+### Environment Variables
+- `CONFIG_FILE` - required - sets the path to the config-file
+- `LOG_FILE` - optional - sets the path to a log-file, if not set the same output will be show with `docker logs <name>`
+
+### Volumes
+You have at least to add a volume which adds the `conf.json`-file to the container.
