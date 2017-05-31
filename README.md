@@ -18,7 +18,7 @@ See the container under <https://hub.docker.com/r/aeimer/webhooker>
       "command": "sudo /opt/deploy.sh"
     }
 ]}
-````
+```
 
 This is the only configuration you need, it's basically some key => command pairs.   
 Please note, that the keys have to be at least ten characters long. **FOR SECURITY REASONS!**
@@ -26,18 +26,25 @@ Please note, that the keys have to be at least ten characters long. **FOR SECURI
 For the keys you use any scheme you want, in this example we just have one "base"-key which then is followed by the task.
 Feel free to handle it in a different way ;)
 
+An sample config-file can be found [here](config.dist.json).
+
 **PLEASE KEEP IN MIND THAT YOU SHOULD USE SSL FOR THESE CALLS!!!**
 
 ## Start the docker container
 To start the container just run:
 
 ````bash
-docker run -d -p 80:80 -v ~/conf.json:/opt/conf.json -e "CONFIG_FILE=/opt/conf.json" --name webhooker aeimer/webhooker
-````
+docker run -d --rm -p 80:80 -v ~/conf.json:/opt/conf.json --name webhooker aeimer/webhooker
+# or (to place the `config.json` somewhere else)
+docker run -d --rm -p 80:80 -v ~/conf.json:/custom/path/conf.json -e "CONFIG_FILE=/custom/path/conf.json" --name webhooker aeimer/webhooker
+```
 
 ### Environment Variables
-- `CONFIG_FILE` - required - sets the path to the config-file
-- `LOG_FILE` - optional - sets the path to a log-file, if not set the same output will be show with `docker logs <name>`
+- `CONFIG_FILE` - optionally - sets the path to the config-file | default: `/opt/conf.json`#
 
 ### Volumes
 You have at least to add a volume which adds the `conf.json`-file to the container.
+
+### Logs
+To get the logs just call `docker logs [container-name]`. Everything what happens gets logged to the default docker log.
+

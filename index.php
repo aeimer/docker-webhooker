@@ -1,9 +1,7 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Alexander
+ * User: Alexander Eimer <github.com/aeimer>
  * Date: 18.05.2017
- * Time: 10:46
  */
 
 // Constants
@@ -22,18 +20,19 @@ $configLogFile = getenv( ENV_LOG_FILE );
 
 // Init Logger
 $logFile = null;
-if ( $configLogFile !== null && is_string( $configLogFile ) && strlen( $configLogFile ) > 0 ) {
-	$logFile = $configLogFile;
-}
+// Commeting this out, not needed currently
+// if ( $configLogFile !== null && is_string( $configLogFile ) && strlen( $configLogFile ) > 0 ) {
+//	$logFile = $configLogFile;
+// }
 $log = new Logger( $logFile );
-$log->log( 'Logger initialised' );
-//$ip = getenv( 'HTTP_CLIENT_IP' ) ?:
-//	getenv( 'HTTP_X_FORWARDED_FOR' ) ?:
-//		getenv( 'HTTP_X_FORWARDED' ) ?:
-//			getenv( 'HTTP_FORWARDED_FOR' ) ?:
-//				getenv( 'HTTP_FORWARDED' ) ?:
-//					getenv( 'REMOTE_ADDR' );
-//$log->log( '+ Request from IP ' . $ip . ' at ' . date('d.m.Y H:i:s'));
+// $log->log( 'Logger initialised' );
+// $ip = getenv( 'HTTP_CLIENT_IP' ) ?:
+// 	getenv( 'HTTP_X_FORWARDED_FOR' ) ?:
+// 		getenv( 'HTTP_X_FORWARDED' ) ?:
+// 			getenv( 'HTTP_FORWARDED_FOR' ) ?:
+// 				getenv( 'HTTP_FORWARDED' ) ?:
+// 					getenv( 'REMOTE_ADDR' );
+// $log->log( '+ Request from IP ' . $ip . ' at ' . date('d.m.Y H:i:s'));
 
 // Read config file
 $configContent = file_get_contents( $configFile );
