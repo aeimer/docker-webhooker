@@ -48,3 +48,9 @@ You have at least to add a volume which adds the `conf.json`-file to the contain
 ### Logs
 To get the logs just call `docker logs [container-name]`. Everything what happens gets logged to the default docker log.
 
+## Call the webhook
+To trigger the webhook just make a call with eg. cURL:
+```bash
+curl -X POST https://example.com -F key=123456789qwertz:restart
+```
+
