@@ -40,7 +40,7 @@ docker run -d --rm -p 80:80 -v ~/config.json:/custom/path/c.json -e "CONFIG_FILE
 ```
 
 ### Environment Variables
-- `CONFIG_FILE` - optionally - sets the path to the config-file | default: `/opt/config.json`#
+- `CONFIG_FILE` - optionally - sets the path to the config-file | default: `/opt/config.json`
 
 ### Volumes
 You have at least to add a volume which adds the `config.json`-file to the container.
