@@ -51,6 +51,6 @@ To get the logs just call `docker logs [container-name]`. Everything what happen
 ## Call the webhook
 To trigger the webhook just make a call with eg. cURL:
 ```bash
-curl -X POST https://example.com -F key=123456789qwertz:restart
+curl --data key=123456789qwertz:restart https://example.com
 ```
 
