@@ -22,8 +22,8 @@ $configLogFile = getenv( ENV_LOG_FILE );
 
 // Init Logger
 $logFile = null;
-if ( $configFile !== null && is_string( $configFile ) && strlen( $configFile ) > 0 ) {
-	$logFile = $configFile;
+if ( $configLogFile !== null && is_string( $configLogFile ) && strlen( $configLogFile ) > 0 ) {
+	$logFile = $configLogFile;
 }
 $log = new Logger( $logFile );
 $log->log( 'Logger initialised' );

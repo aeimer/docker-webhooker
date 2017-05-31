@@ -8,7 +8,7 @@ See the container under <https://hub.docker.com/r/aeimer/webhooker>
  
 ## Configuration
 ````json
-{"data":[
+{"config":[
   {
     "key": "123456789qwertz:restart",
     "command": "sudo shutdown -r now"
